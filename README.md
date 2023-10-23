@@ -1,13 +1,13 @@
 # Central_addressing
-##Components:
+ ##Components:
 -Raspberry pi
 -NodeMCU
 ##Website:
-###Admin:
+##Admin:
 -Choose the class room
 -Choose which device he/she needs to operate
 -Send the required data/information
-###Student:
+##Student:
 -Choose the course
 
 ##Configurations:
