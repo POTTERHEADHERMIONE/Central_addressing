@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from database import adminList, studentList
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -35,5 +36,5 @@ def login():
     return jsonify(response)
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
