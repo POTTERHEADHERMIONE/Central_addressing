@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('background.png'); /* Replace 'your-image.jpg' with the image URL or file path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Slightly transparent border */
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background color */
+    border-radius: 10px;
+    display: none;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Slightly more visible shadow */
+    color: #fff; /* Text color */
+}
+
+select, textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
+    border-radius: 5px;
+    font-size: medium;
+    background: rgba(0, 0, 0, 0.3); /* Slightly transparent background color */
+    color: #fff; /* Text color */
+}
+
+button {
+    background-color: #ff6f61; /* Coral color */
+    color: #f3f2f2;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: large;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#login-button {
+    background-color: #f5210c;
+}
+
+.header
+{
+    width: 100%;
+    height: 100vh;
+    background-color:rgba(0, 0, 0, 0.6) ;
+}
+
+.side-nav
+{
+    width: 250px;
+    height:100%;
+    background-color: dimgrey;
+    position:fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+  
+    
+}
