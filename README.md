@@ -2,7 +2,7 @@
 
 ## Student
 - Select the course
-- Should be able o view the information sent and open the links etc sent 
+- Should be able to view the information sent and open the links etc sent 
 
 ## Admin 
 - Choose the classroom / multiple classrooms to be sent
