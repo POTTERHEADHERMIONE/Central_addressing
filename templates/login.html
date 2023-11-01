@@ -3,32 +3,29 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    
 </head>
 <body>
     <h1 style="text-align: center;">Login</h1>
    
     <div id="login-form" style="width: max-content; height: max-content; text-align: center; margin: 0 auto; margin-top: 10px;">
         <div>
-            
-            <button id="adminButton">Admin</button>
-            <button id="studentButton" >Student</button>
+            <button id="adminButton" class="admin-selected">Admin</button>
+            <button id="studentButton">Student</button>
         </div>
         <br><br>
-
-            <label for="username">Mail ID :</label>
-            <input type="text" id="mailID" >
-            <br><br>
-            <label for="password">Password :</label>
-            <input type="password" id="password">
+        <label for="username">Mail ID:</label>
+        <input type="text" id="mailID">
         <br><br>
-      
+        <label for="password">Password:</label>
+        <input type="password" id="password">
+        <br><br>
         <br><br>
         <label id="status"></label>
         <button type="submit" id="login-button">Login</button>
     </div>
-    <div id="wrapper" style="height:100px;overflow: auto"></div>
+    <div id="wrapper" style="height: 100px; overflow: auto"></div>
 
     <script src="{{ url_for('static', filename='login.js') }}"></script>
-    
 </body>
 </html>

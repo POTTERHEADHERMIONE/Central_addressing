@@ -1,8 +1,14 @@
 var isAdmin;
+adminButton.style.backgroundColor = "#f5210c";
 studentButton.addEventListener("click", function () {
     isAdmin = 0;
     studentButton.style.backgroundColor = "#f5210c";
     adminButton.style.backgroundColor = "#ff6f61";
+});
+adminButton.addEventListener("click" , function (){
+isAdmin = 1;
+studentButton.style.backgroundColor = "#ff6f61";
+ adminButton.style.backgroundColor = "#f5210c" ;
 });
 
 document.getElementById("login-button").addEventListener("click", function () {
