@@ -1,77 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Classroom Management</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body >
-    <h1 style="text-align: center;">Kool Lectures</h1>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='studentstyle.css') }}">
+    <script src="https://kit.fontawesome.com/c94fce1bd4.js" crossorigin="anonymous"></script>
+    <title>Document</title>
    
-    <div id="buttons" style="text-align: center;">
-    <button id="student-button">Student</button>
-    <button id="admin-button">Admin</button>
-</div>
-
-    <!-- Student section -->
-    <div class="container" id="student-section" style="width: max-content;height: max-content; text-align: center; margin: 0 auto;margin-top: 10px;">
-        <h2>Student</h2>
-        <label for="course-select">Select a Course:</label>
-        <select id="course-select">
-            <!-- <option value="C1">RANAC</option>
-            <option value="C2">CS</option>
-            <option value="C3">OOP</option>
-            <option value="C4">ES</option>
-            <option value="C5">CNA</option> -->
-        </select>
-        <div id="course-information">
-            <h3>Course Information</h3>
-            <p id="course-info-text"></p>
-            <a id="course-link" href="student.html" target="_blank" style="color: bisque;">
-                <button>COURSE UPDATE</button></a>
+</head>
+<body>
+    <div class="header">
+        <div class="side-nav">
+            <h1 style="color: rgb(18, 209, 216)">COURSE</h1>
+            <ul class="nav-links">
+                <li><a href="#"><i class="fa-solid fa-calculator"></i><p>RANAC</p></a></li>
+                <li><a href="#"><i class="fa-solid fa-laptop-code"></i><p>OPP</p></a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-nodes"></i><p>CNA</p></a></li>
+                <li><a href="#"><i class="fa-solid fa-car-battery"></i><p>CS</p></a></li>
+                <li><a href="#"><i class="fa-solid fa-robot"></i><p>ES</p></a></li>
+            </ul>
+        </div>
+        <div class="course-info">
+            <h2>Course Information</h2>
+            <p id="course-name">Select a course to view information</p>
         </div>
     </div>
-    
-    <!-- Admin section -->
-    <div class="container" id="admin-section" style="width: max-content;height: max-content; text-align: center; margin: 0 auto;margin-top: 10px;">
-        <h2>Admin</h2>
-        <label for="classroom-select">Choose Classroom:</label>
-        <select id="classroom-select">
-            <option value="classroom-201">Room:201</option>
-            <option value="classroom-203">Room:203</option>
-            <option value="classroom-205">Room:205</option>
-            <option value="classroom-207">Room:207</option>
-            <option value="classroom-209">Room:209</option>
-            <option value="classroom-Clab">Clab</option>
-            <option value="classroom-ECE lab">ECE lab</option>
-            
-
-        </select>
-        <label for="component-select">Choose Media:</label>
-        <select id="component-select">
-            <option value="audio">Audio - Speaker</option>
-            <option value="video">Video - Projector</option>
-            <option value="text">Text - College mail</option>
-        </select>
-        <label for="enter-login">
-            <a href="admin..html">
-                <button>Login</button>
-            </a>
-
-        </label>
-        <br>
-        <br>
-        <label for="information-text" style="padding-top: 50px;"><h3>Email</h3></label>
-   
-<a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=aayasyasaakshi@gmail.com&su=Important%20Information&body=Compose%20your%20message%20here" target="_blank">
-    <button id="send-information" style="background-color: black;">Send</button>
-</a>
-
-            
-        
-     
-    </div>
-
-    <script src="{{ url_for('static', filename='student.js') }}"></script>
-    
+    <script src="{{ url_for('static', filename='studentscript.js') }}"></script>
 </body>
 </html>
+

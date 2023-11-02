@@ -1,8 +1,14 @@
 var isAdmin;
+adminButton.style.backgroundColor = "#f5210c";
 studentButton.addEventListener("click", function () {
     isAdmin = 0;
     studentButton.style.backgroundColor = "#f5210c";
     adminButton.style.backgroundColor = "#ff6f61";
+});
+adminButton.addEventListener("click" , function (){
+isAdmin = 1;
+studentButton.style.backgroundColor = "#ff6f61";
+ adminButton.style.backgroundColor = "#f5210c" ;
 });
 
 document.getElementById("login-button").addEventListener("click", function () {
@@ -35,7 +41,7 @@ document.getElementById("login-button").addEventListener("click", function () {
                 window.location.href = "/student";
             } else {
                 // Handle the admin login redirect logic here, if needed.
-                window.location.href = "admin.html";
+                window.location.href = "/admin";
             }
         }
     });
