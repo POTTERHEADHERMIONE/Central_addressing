@@ -41,7 +41,7 @@ document.getElementById("login-button").addEventListener("click", function () {
                 window.location.href = "/student";
             } else {
                 // Handle the admin login redirect logic here, if needed.
-                window.location.href = "admin.html";
+                window.location.href = "/admin";
             }
         }
     });

@@ -42,7 +42,7 @@ h2 {
 }
 
 .nav-links li a {
-    color: rgb(15, 4, 1);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     padding: 10px 14px;
     display: flex;
@@ -105,8 +105,8 @@ h2 {
 }
 
 .nav-links li:hover a {
-    color: rgb(19, 18, 18);
-    background-color: coral; 
+    color: rgb(246, 246, 253);
+    background-color: rgb(18, 209, 216); 
     transition: 0.3s;
 }
 
@@ -116,21 +116,21 @@ h2 {
 
 
 .nav-links li.selected a {
-    background-color: coral;
-    color: rgb(19, 18, 18);
+    background-color: rgb(18, 209, 216);
+    color: rgb(255, 255, 255);
 }
 }
 
 .nav-links li a:hover {
-    background-color: coral; 
-    color: rgb(19, 18, 18);
+    background-color:  rgb(18, 209, 216); 
+    color: rgb(255, 255, 255);
     transition: 0.3s;
 }
 
 
 .nav-links li.selected a {
-    background-color: coral;
-    color: rgb(19, 18, 18);
+    background-color:  rgb(18, 209, 216);
+    color: rgb(255, 255, 255);
 }
 
 

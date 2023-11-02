@@ -11,6 +11,11 @@ def studentPage():
     print("we reached")
     return render_template("student.html")
 
+@app.route("/admin")
+def adminPage():
+    print("we reached")
+    return render_template("admin.html")
+
 @app.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
@@ -30,7 +35,7 @@ def login():
         else :
             response = {"status":"Invalid Password"}
     else :
-        response = {"status":"User doesn\"t exist"}
+        response = {"status":"User doesn't exist"}
     print(response)
     return jsonify(response)
 
