@@ -106,7 +106,7 @@ h2 {
 
 .nav-links li:hover a {
     color: rgb(246, 246, 253);
-    background-color: rgb(18, 209, 216); 
+    background-color: #62e9e2 ; 
     transition: 0.3s;
 }
 
@@ -116,20 +116,20 @@ h2 {
 
 
 .nav-links li.selected a {
-    background-color: rgb(18, 209, 216);
+    background-color: #62e9e2 ;
     color: rgb(255, 255, 255);
 }
 }
 
 .nav-links li a:hover {
-    background-color:  rgb(18, 209, 216); 
+    background-color: #62e9e2 ; 
     color: rgb(255, 255, 255);
     transition: 0.3s;
 }
 
 
 .nav-links li.selected a {
-    background-color:  rgb(18, 209, 216);
+    background-color:  #62e9e2 ;
     color: rgb(255, 255, 255);
 }
 

@@ -23,6 +23,8 @@ mediaForm.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent the form from submitting
     const selectedMediaType = mediaTypeSelect.value;
     selectedMedia.textContent = `Selected Media: ${selectedMediaType}`;
+    selectedMedia.style.color="#62e9e2 ";
+    selectedMedia.style.fontSize="medium";
     
 });
 

@@ -1,16 +1,15 @@
 var isAdmin;
-adminButton.style.backgroundColor = "#f5210c";
+adminButton.style.backgroundColor = "#62e9e2";
 studentButton.addEventListener("click", function () {
     isAdmin = 0;
-    studentButton.style.backgroundColor = "#f5210c";
-    adminButton.style.backgroundColor = "#ff6f61";
+    studentButton.style.backgroundColor = "#62e9e2";
+    adminButton.style.backgroundColor = "#03434e";
 });
 adminButton.addEventListener("click" , function (){
 isAdmin = 1;
-studentButton.style.backgroundColor = "#ff6f61";
- adminButton.style.backgroundColor = "#f5210c" ;
+studentButton.style.backgroundColor = "#03434e";
+ adminButton.style.backgroundColor = "#62e9e2" ;
 });
-
 document.getElementById("login-button").addEventListener("click", function () {
     event.preventDefault();
     var mailID = document.getElementById("mailID").value;

@@ -29,7 +29,7 @@ def main():
     
     socket_server_thread = threading.Thread(target=socket_server)
     socket_server_thread.start()
-    # app.run(debug=True, threaded=True)
+    app.run(debug=True, threaded=True)
 
 if __name__ == '__main__':
     main()
