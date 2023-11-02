@@ -17,3 +17,16 @@
 - Connect the raspberry pi with NodeMCU through wifi
 - Connect the nodeMCU to the other devices in the classroom
 - Connect the website with the Raspberry pi
+
+# Libraries used
+- For NodeMCU - Micropython V22 firmware
+  - flashed using esptool, uploaded code using thonny (GUI), ampy (command line)
+     - uasyncio
+     - network
+     - usocket
+- For RaspberryPi - Flask app, socket
+  
+# instructions
+- sudo systemctl start mongodb
+- run app_routes.py
+  
