@@ -4,7 +4,7 @@ import uasyncio as asyncio
 
 wifi_ssid = "IIITS_Student"
 wifi_password = "iiit5@2k18"
-server_address = ('10.0.9.83', 1234)  # Replace with your server's IP address and port
+server_address = ('10.0.9.83', 8948)  # Replace with your server's IP address and port
 
 async def wifi_connect(ssid, password):
     sta_if = network.WLAN(network.STA_IF)

@@ -40,3 +40,9 @@ def login():
     print(response)
     return jsonify(response)
 
+<<<<<<< HEAD
+=======
+
+if __name__ == "__main__":
+    app.run(debug=True)
+>>>>>>> 1b1a2027b100de87449f6197721ba8ebbc71ef6b

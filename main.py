@@ -1,10 +1,10 @@
 import socket
-from app_routes import app
+# from app_routes import app
 import threading 
 
 # Define the server's IP address and port
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind(("0.0.0.0", 1234))
+server.bind(("0.0.0.0", 8948))
 server.listen(5)
 
 def handle_client(client_socket):
