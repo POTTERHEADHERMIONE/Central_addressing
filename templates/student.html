@@ -6,30 +6,26 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='studentstyle.css') }}">
     <script src="https://kit.fontawesome.com/c94fce1bd4.js" crossorigin="anonymous"></script>
     <title>Document</title>
+   
 </head>
 <body>
     <div class="header">
-        
         <div class="side-nav">
-            <h1 style="color: coral">Course</h1>
-            
+            <h1 style="color: coral">COURSE</h1>
             <ul class="nav-links">
-                <li><a href=""><i class="fa-solid fa-calculator"></i><p>RANAC</p></a></li>
+                <li><a href="#"><i class="fa-solid fa-calculator"></i><p>RANAC</p></a></li>
                 <li><a href="#"><i class="fa-solid fa-laptop-code"></i><p>OPP</p></a></li>
                 <li><a href="#"><i class="fa-solid fa-circle-nodes"></i><p>CNA</p></a></li>
                 <li><a href="#"><i class="fa-solid fa-car-battery"></i><p>CS</p></a></li>
                 <li><a href="#"><i class="fa-solid fa-robot"></i><p>ES</p></a></li>
-                <div class="active">
-
-                </div>
-
-
-
             </ul>
-            
+        </div>
+        <div class="course-info">
+            <h2>Course Information</h2>
+            <p id="course-name">Select a course to view information</p>
+        </div>
     </div>
-  
-
-    
+    <script src="script.js"></script>
 </body>
 </html>
+

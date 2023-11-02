@@ -29,7 +29,7 @@ h2 {
     padding: 20px 30px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the subjects vertically */
+    align-items: center; 
 }
 
 .nav-links {
@@ -54,48 +54,6 @@ h2 {
     margin-right: 20px;
 }
 
-.active {
-    background-color: rgba(240, 240, 240, 0.3);
-    width: 200px;
-    height: 47px;
-    position: absolute;
-    left: 0;
-    top: 5%;
-    z-index: -1;
-    border-radius: 6px;
-    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
-    display: none;
-    transition: top 0.5s;
-}
-
-.nav-links li:hover a {
-    color: rgb(19, 18, 18);
-    transition: 0.3s;
-}
-
-.nav-links li:hover ~ .active {
-    display: block;
-}
-
-.nav-links li:nth-child(1):hover ~ .active {
-    top: 5%;
-}
-
-.nav-links li:nth-child(2):hover ~ .active {
-    top: 25%;
-}
-
-.nav-links li:nth-child(3):hover ~ .active {
-    top: 45%;
-}
-
-.nav-links li:nth-child(4):hover ~ .active {
-    top: 65%;
-}
-
-.nav-links li:nth-child(5):hover ~ .active {
-    top: 85%;
-}
 
 @media only screen and (max-width: 600px) {
     .side-nav {
@@ -115,5 +73,64 @@ h2 {
     }
 }
 
-    /* Adjust the active block for smaller screens */
-   
+ 
+
+.course-info {
+    width: 500px;
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); 
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    color: white;
+
+
+.active {
+    background-color: rgba(240, 240, 240, 0.3);
+    width: 200px;
+    height: 47px;
+    position: absolute;
+    left: 0;
+    top: 5%;
+    z-index: -1;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
+    display: none;
+    transition: top 0.5s, background-color 0.3s; /* Add background-color transition */
+}
+
+.nav-links li:hover a {
+    color: rgb(19, 18, 18);
+    background-color: coral; 
+    transition: 0.3s;
+}
+
+.nav-links li:hover ~ .active {
+    display: block;
+}
+
+
+.nav-links li.selected a {
+    background-color: coral;
+    color: rgb(19, 18, 18);
+}
+}
+
+.nav-links li a:hover {
+    background-color: coral; 
+    color: rgb(19, 18, 18);
+    transition: 0.3s;
+}
+
+
+.nav-links li.selected a {
+    background-color: coral;
+    color: rgb(19, 18, 18);
+}
+
+
