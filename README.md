@@ -27,7 +27,11 @@
 - For RaspberryPi - Flask app, socket
   
 # instructions
-- sudo systemctl start mongodb
-- run app_routes.py
-- ssh pi@IP address
+
+- ssh pi@IP address (open in 2 windows)
+- sudo systemctl start mongodb (run in any one)
+- cd Central_addressing/ (in both terminals)
+- gunicorn -w 4 -b 0.0.0.0:5000 webApp:app (run in one of them)
+- python3 socketServer.py (in the other one)
+
   
