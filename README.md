@@ -29,4 +29,5 @@
 # instructions
 - sudo systemctl start mongodb
 - run app_routes.py
+- ssh pi@IP address
   
