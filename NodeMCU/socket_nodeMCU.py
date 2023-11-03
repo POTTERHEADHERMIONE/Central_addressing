@@ -1,3 +1,16 @@
+# boot.py start
+#This file is executed on every boot (including wake-boot from deepsleep)
+#import esp
+#esp.osdebug(None)
+import os, machine
+#os.dupterm(None, 1) # disable REPL on UART(0)
+import gc
+#import webrepl
+#webrepl.start()
+gc.collect()
+
+## Boot.py end
+
 import usocket as socket
 import network
 import uasyncio as asyncio
@@ -27,7 +40,7 @@ async def handle_server_connection():
 
         while True:
             # Send a message to the server
-            client_socket.send("This is a test message from client")
+            client_socket.send("This is a test message from NodeMCU (client)")
             # Receive data from the server
             data = client_socket.recv(1024)
             if not data:
