@@ -1,5 +1,6 @@
 var isAdmin;
 adminButton.style.backgroundColor = "#62e9e2";
+studentButton.style.backgroundColor = "#03434e";
 studentButton.addEventListener("click", function () {
     isAdmin = 0;
     studentButton.style.backgroundColor = "#62e9e2";
