@@ -27,11 +27,19 @@
 - For RaspberryPi - Flask app, socket
   
 # instructions
-
+- Laptop should be connected to "Saakshi" wifi name
 - ssh pi@IP address (open in 2 windows)
 - sudo systemctl start mongodb (run in any one)
 - cd Central_addressing/ (in both terminals)
 - gunicorn -w 4 -b 0.0.0.0:5000 webApp:app (run in one of them)
+- open the browser, type the ipaddress:5000 (where ipaddress is the IP address of RPi)
 - python3 socketServer.py (in the other one)
+- if the ip adress of Rpi is not 192.168.156.23, then do this : 
+      Open the socket_nodeMCU.py in NodeMCU folder
+      in line 20, change the ip address to Rpi's ip
+      Connect NodeMCU to laptop and run this in cmd
+      ampy --port /dev/ttyUSB0 put ./NodeMCU/socket_nodeMCU.py ./boot.py
+      if it gives error, reset the board
+      after it is executed, disconnect and reconnect nodemcu
 
   
