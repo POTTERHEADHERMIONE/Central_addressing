@@ -77,8 +77,12 @@
 
             // Send data to the server using FormData
             const formData = new FormData();
-            formData.append('textData', textData);
+            // formData.append('textData', textData);
             formData.append('audioData', audioBlob, 'audio.wav');
+            // var data = {
+            //     'textData':textData,
+            //     'audioData':audioBlob
+            // }
 
             fetch(serverUrl, {
                 method: 'POST',

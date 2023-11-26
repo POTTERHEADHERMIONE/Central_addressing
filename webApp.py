@@ -32,7 +32,11 @@ def login():
     response = {}
     if (user):
         if (password == user["password"]):
-            response = {"status":"success","subs":["RANAC","OOP","CNA","CS","ES"]}
+            response = {"status":"success"}
+            if (isAdmin) :
+                response['rooms'] = ['123','124','125']
+            else :
+                response['subs'] = ["RANAC","OOP","CNA","CS","ES"]
         else :
             response = {"status":"Invalid Password"}
     else :
