@@ -5,49 +5,311 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='adminstyle.css') }}">
     <script src="https://kit.fontawesome.com/c94fce1bd4.js" crossorigin="anonymous"></script>
-    <title>Admin document</title>
+    <title>Classroom choose</title>
 </head>
 <body>
-    <header>
-        <h2 style="text-align: center;" style="color: white;">ADMIN</h2>
-    </header>
-    <main>
-        <h2 class="select-tag" style="color: #62e9e2 ;">Select the Classroom</h2>
-        <div class="button-one">
-            <button class="one">201</button>
-            <button class="two">203</button>
-            <button class="three">205</button>
+    <div class="header">
+        <div class="side-nav">
+            <h1 style="color: #62e9e2;">Class - Room</h1>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showOptions('201')">201</a></li>
+                <li><a href="#" onclick="showOptions('203')">203</a></li>
+                <li><a href="#" onclick="showOptions('205')">205</a></li>
+                <li><a href="#" onclick="showOptions('201')">207</a></li>
+                <li><a href="#" onclick="showOptions('203')">209</a></li>
+                <li><a href="#" onclick="showOptions('205')">215</a></li>
+                <li><a href="#" onclick="showOptions('201')">213</a></li>
+                <li><a href="#" onclick="showOptions('203')">211</a></li>
+               
+                <!-- Add more room numbers with onclick attribute -->
+                <!-- Example: <li><a href="#" onclick="showOptions('207')">207</a></li> -->
+            </ul>
         </div>
-        <br>
-        <div class="button-two">
-            <button class="four">211</button>
-            <button class="five">213</button>
-            <button class="six">215</button>
+        <div class="course-info">
+            <h2></h2>
+            <p id="course-name">Select a room to view information</p>
+            <div id="options-bar" class="options-bar">
+                <!-- Content dynamically injected here -->
+            </div>
         </div>
-        <br>
-        <div class="button-one">
-            <button class="seven">115</button>
-            <button class="eight">113</button>
-            <button class="nine">107</button>
-        </div>
-    </main>
-    <div id="media-options" style="display: none;">
-        <h2 style="color: #62e9e2 ;">Select Media Options</h2>
-        <form id="media-form">
-            <label for="media-type" style="color: red;"><h3>Media Type:</h3></label>
-            <select id="media-type" name="media-type">
-                <option value="audio">Audio - Speaker</option>
-                <option value="video">Video - Projector</option>
-                <option value="text">Text - College mail</option>
-            </select>
-            <button type="submit" style="font-size: medium;">Select</button>
-        </form>
-        <p id="selected-media" style="font-size: medium;"></p>
     </div>
-    
-    <footer>
-    </footer>
- <!-- Include your JavaScript file -->
+    <script src="page3S.js"></script>
+
+    <style>
+        .options-bar {
+            display: none;
+            background-color: #62e9e2;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .options-bar button {
+            margin: 0 10px;
+            background-color: #03434e;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+
+<!-- ... (your existing HTML code) ... -->
+
+<script>
+    // Array to store selected room numbers
+    let selectedRooms = [];
+
+    function showOptions(roomNumber) {
+        document.getElementById('course-name').innerText = "Room: " + roomNumber;
+        var optionsBar = document.getElementById('options-bar');
+        optionsBar.style.display = 'block';
+        optionsBar.innerHTML = ''; // Clear previous content
+
+        // Inject options bar HTML
+        var optionsHTML = `
+            <button onclick="showAudioOptions('${roomNumber}')">AUDIO</button>
+            <button onclick="showVideoOptions('${roomNumber}')">VIDEO</button>
+            <button onclick="showTextInput('${roomNumber}')">TEXT</button>
+        `;
+        optionsBar.innerHTML = optionsHTML;
+
+        // Add the selected room to the array
+        selectedRooms.push(roomNumber);
+    }
+
+    function showAudioOptions(roomNumber) {
+        // Inject audio recording HTML and JavaScript
+        var audioRecordingHTML = `
+            <h2>Audio Recording</h2>
+            <button id="startRecording">Start Recording</button>
+            <button id="stopRecording" disabled>Stop Recording</button>
+            <h2>Audio Playback</h2>
+            <audio controls id="audioPlayer"></audio>
+            <button id="submitData">Submit Data</button>
+            <div id="successMessage" style="color: green;"></div>
+        `;
+
+        document.getElementById('options-bar').innerHTML += audioRecordingHTML;
+
+        // Inject audio recording JavaScript
+        var audioRecordingScript = document.createElement('script');
+        audioRecordingScript.innerHTML = `
+            let mediaRecorder;
+            let audioChunks = [];
+
+            async function startRecording() {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+
+                    mediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            audioChunks.push(event.data);
+                        }
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        document.getElementById('audioPlayer').src = audioUrl;
+                    };
+
+                    mediaRecorder.start();
+                    document.getElementById('startRecording').disabled = true;
+                    document.getElementById('stopRecording').disabled = false;
+                } catch (error) {
+                    console.error('Error accessing microphone:', error);
+                }
+            }
+
+            function stopRecording() {
+                if (mediaRecorder.state === 'recording') {
+                    mediaRecorder.stop();
+                    document.getElementById('startRecording').disabled = false;
+                    document.getElementById('stopRecording').disabled = true;
+                }
+            }
+
+            function submitData() {
+                const textData = document.getElementById('textData').value;
+                const serverUrl = 'http://127.0.0.1:5000/admin/send_data';
+
+                if (audioChunks.length === 0) {
+                    console.error('No audio recorded.');
+                    return;
+                }
+
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+
+                // Send data to the server using FormData
+                const formData = new FormData();
+                formData.append('textData', textData);
+                formData.append('audioData', audioBlob, 'audio.wav');
+
+                fetch(serverUrl, {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Data submitted successfully', data);
+                    // Show success message
+                    document.getElementById('successMessage').innerText = 'Data sent successfully!';
+                    document.getElementById('successMessage').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error submitting data', error);
+                    // Handle errors
+                });
+            }
+
+            document.getElementById('startRecording').addEventListener('click', startRecording);
+            document.getElementById('stopRecording').addEventListener('click', stopRecording);
+            document.getElementById('submitData').addEventListener('click', submitData);
+        `;
+
+        document.getElementById('options-bar').appendChild(audioRecordingScript);
+    }
+
+    function showVideoOptions(roomNumber) {
+        // Inject video recording HTML and JavaScript
+        var videoRecordingHTML = `
+            <h2>Video Recording</h2>
+            <button id="startVideoRecording">Start Video Recording</button>
+            <button id="stopVideoRecording" disabled>Stop Video Recording</button>
+            <video controls id="videoPlayer"></video>
+            <button id="submitVideoData">Submit Video Data</button>
+            <div id="videoSuccessMessage" style="color: green;"></div>
+        `;
+
+        document.getElementById('options-bar').innerHTML += videoRecordingHTML;
+
+        // Inject video recording JavaScript
+        var videoRecordingScript = document.createElement('script');
+        videoRecordingScript.innerHTML = `
+            let videoMediaRecorder;
+            let videoChunks = [];
+
+            async function startVideoRecording() {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                    videoMediaRecorder = new MediaRecorder(stream);
+
+                    videoMediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            videoChunks.push(event.data);
+                        }
+                    };
+
+                    videoMediaRecorder.onstop = () => {
+                        const videoBlob = new Blob(videoChunks, { type: 'video/webm' });
+                        const videoUrl = URL.createObjectURL(videoBlob);
+                        document.getElementById('videoPlayer').src = videoUrl;
+                    };
+
+                    videoMediaRecorder.start();
+                    document.getElementById('startVideoRecording').disabled = true;
+                    document.getElementById('stopVideoRecording').disabled = false;
+                } catch (error) {
+                    console.error('Error accessing camera:', error);
+                }
+            }
+
+            function stopVideoRecording() {
+                if (videoMediaRecorder.state === 'recording') {
+                    videoMediaRecorder.stop();
+                    document.getElementById('startVideoRecording').disabled = false;
+                    document.getElementById('stopVideoRecording').disabled = true;
+                }
+            }
+
+            function submitVideoData() {
+                const videoData = document.getElementById('videoData').value;
+                const serverUrl = 'http://127.0.0.1:5000/admin/send_video_data';
+
+                if (videoChunks.length === 0) {
+                    console.error('No video recorded.');
+                    return;
+                }
+
+                const videoBlob = new Blob(videoChunks, { type: 'video/webm' });
+
+                // Send video data to the server using FormData
+                const formData = new FormData();
+                formData.append('videoData', videoBlob, 'video.webm');
+
+                fetch(serverUrl, {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Video data submitted successfully', data);
+                    // Show success message
+                    document.getElementById('videoSuccessMessage').innerText = 'Video data sent successfully!';
+                    document.getElementById('videoSuccessMessage').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error submitting video data', error);
+                    // Handle errors
+                });
+            }
+
+            document.getElementById('startVideoRecording').addEventListener('click', startVideoRecording);
+            document.getElementById('stopVideoRecording').addEventListener('click', stopVideoRecording);
+            document.getElementById('submitVideoData').addEventListener('click', submitVideoData);
+        `;
+
+        document.getElementById('options-bar').appendChild(videoRecordingScript);
+    }
+
+    function showTextInput(roomNumber) {
+        // Inject text input HTML
+        var textInputHTML = `
+            <input type="text" id="textInput" class="text-input" placeholder="Enter text information">
+            <button onclick="submitTextData('${roomNumber}')">Submit Text Data</button>
+            <div id="textSuccessMessage" style="color: green;"></div>
+        `;
+
+        document.getElementById('options-bar').innerHTML += textInputHTML;
+    }
+
+    function submitTextData(roomNumber) {
+        const textData = document.getElementById('textInput').value;
+        const serverUrl = 'http://127.0.0.1:5000/admin/send_text_data';
+
+        // Create FormData and append text data, room number, and selected rooms
+        const formData = new FormData();
+        formData.append('textData', textData);
+        formData.append('roomNumber', roomNumber);
+        formData.append('selectedRooms', JSON.stringify(selectedRooms));
+
+        // Send data to the server using FormData
+        fetch(serverUrl, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Text data submitted successfully', data);
+            // Show success message
+            document.getElementById('textSuccessMessage').innerText = 'Text data sent successfully!';
+            document.getElementById('textSuccessMessage').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error submitting text data', error);
+            // Handle errors
+        });
+    }
+
+    function selectOption(option) {
+        alert("Selected Option: " + option);
+        // You can customize this function based on your requirements
+        // For example, redirect to a new page, update content, etc.
+    }
+</script>
+
+<!-- ... (remaining HTML code) ... -->
  <script src="{{ url_for('static', filename='adminscript.js') }}"></script>
 </body>
 </html>

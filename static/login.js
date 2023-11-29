@@ -1,16 +1,19 @@
-var isAdmin;
+var isAdmin = 1;
 adminButton.style.backgroundColor = "#62e9e2";
 studentButton.style.backgroundColor = "#03434e";
+
 studentButton.addEventListener("click", function () {
     isAdmin = 0;
     studentButton.style.backgroundColor = "#62e9e2";
     adminButton.style.backgroundColor = "#03434e";
 });
+
 adminButton.addEventListener("click" , function (){
-isAdmin = 1;
-studentButton.style.backgroundColor = "#03434e";
- adminButton.style.backgroundColor = "#62e9e2" ;
+    isAdmin = 1;
+    studentButton.style.backgroundColor = "#03434e";
+    adminButton.style.backgroundColor = "#62e9e2" ;
 });
+
 document.getElementById("login-button").addEventListener("click", function () {
     event.preventDefault();
     var mailID = document.getElementById("mailID").value;
@@ -20,6 +23,7 @@ document.getElementById("login-button").addEventListener("click", function () {
         "password": password,
         "isAdmin": isAdmin
     };
+    console.log(data);
     fetch("/login", {
         method: "POST",
         headers: {

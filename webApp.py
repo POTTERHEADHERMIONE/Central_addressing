@@ -20,6 +20,7 @@ def adminPage():
 @app.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
+    print(data)
     isAdmin = data["isAdmin"]
     mailID = data["mailID"]
     password = data["password"]

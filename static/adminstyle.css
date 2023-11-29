@@ -13,38 +13,124 @@ body {
     height: 100vh;
 }
 
-main button {
-    background-color: rgb(226, 223, 222); /* Set the background color to red */
-    color: rgb(0, 0, 0); /* Set the text color to white for better contrast */
-    border: none; /* Remove the default button border */
-    padding: 10px 20px; /* Add some padding for better appearance */
-    margin: 10px; /* Add spacing between buttons */
-    cursor: pointer; /* Change cursor on hover to indicate interactivity */
-    border-radius: 15px;
-    
+h2 {
+    left: 0;
+    align-items: center;
+    text-align: center;
 }
 
-/* Add a hover effect to change the background color on hover */
-main button:hover {
-    background-color: #82d2d8; /* Change background color on hover */
+.side-nav {
+    width: 250px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
-/* ... (Your existing CSS) ... */
 
-.hidden {
-    display: none; /* Hide the element with the "hidden" class */
+.nav-links {
+    list-style: none;
+    position: relative;
+}
+
+.nav-links li {
+    padding: 10px 0;
+}
+
+.nav-links li a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li a i {
+    font-size: 22px;
+    margin-right: 20px;
 }
 
 
-main button:active {
-    background-color: rgb(83, 129, 230); /* Change background color to red for selected buttons */
+@media only screen and (max-width: 600px) {
+    .side-nav {
+        width: 110px;
+    }
+    .logo-icon {
+        display: block;
+    }
+    .nav-links li a p {
+        display: none;
+    }
+    .nav-links li a i {
+        margin-right: 0;
+    }
+    .nav-links li a {
+        justify-content: center;
+    }
 }
-#media-type {
-    background-color: rgb(248, 247, 246);
-    color: rgb(2, 0, 0); /* Set the text color to white for better contrast */
-    border: none; /* Remove the default select box border */
-    padding: 10px; /* Add some padding for better appearance */
-    font-size: medium;
-    
+
+ 
+
+.course-info {
+    width: 500px;
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); 
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    color: white;
 
 
+.active {
+    background-color: rgba(240, 240, 240, 0.3);
+    width: 200px;
+    height: 47px;
+    position: absolute;
+    left: 0;
+    top: 5%;
+    z-index: -1;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.4);
+    display: none;
+    transition: top 0.5s, background-color 0.3s; /* Add background-color transition */
 }
+
+.nav-links li:hover a {
+    color: rgb(246, 246, 253);
+    background-color: #62e9e2 ; 
+    transition: 0.3s;
+}
+
+.nav-links li:hover ~ .active {
+    display: block;
+}
+
+
+.nav-links li.selected a {
+    background-color: #62e9e2 ;
+    color: rgb(255, 255, 255);
+}
+}
+
+.nav-links li a:hover {
+    background-color: #62e9e2 ; 
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+}
+
+
+.nav-links li.selected a {
+    background-color:  #62e9e2 ;
+    color: rgb(255, 255, 255);
+}
+
+
