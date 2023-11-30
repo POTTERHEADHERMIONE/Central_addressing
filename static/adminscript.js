@@ -48,6 +48,7 @@ let selectedRooms = [];
 
         // Inject options bar HTML
         var optionsHTML = `
+            <button onclick="showAudioOptions('${roomNumber}')">SENT</button>
             <button onclick="showAudioOptions('${roomNumber}')">AUDIO</button>
             <button onclick="showVideoOptions('${roomNumber}')">VIDEO</button>
             <button onclick="showTextInput('${roomNumber}')">TEXT</button>

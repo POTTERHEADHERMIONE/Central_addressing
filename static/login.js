@@ -43,6 +43,7 @@ document.getElementById("login-button").addEventListener("click", function () {
             statusLabel.innerText = '';
             // Proceed with successful login logic
             var subs = data.subs;
+            
             localStorage.setItem("subs", JSON.stringify(subs));
 
             if (isAdmin === 0) {

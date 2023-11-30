@@ -1,10 +1,14 @@
+
+
+
 const navLinks = document.querySelectorAll('.nav-links li');
-const courseInfo = document.getElementById('course-name'); // Get the course information element
-const hoverBlock = document.querySelector('.active'); // Get the hover block element
+const courseInfo = document.getElementById('course-name'); 
+const hoverBlock = document.querySelector('.active'); 
 
 function showCourseInfo(courseName) {
     courseInfo.textContent = `Selected Course: ${courseName}`;
 }
+
 
 
 function clearCourseInfo() {
@@ -23,7 +27,7 @@ function selectCourse(courseName, linkElement) {
     hoverBlock.style.top = `${linkElement.offsetTop}px`; 
 }
 
-// CLick ad remain in the same position
+
 navLinks.forEach((link, index) => {
     const courseName = link.querySelector('p').textContent;
 
@@ -41,7 +45,7 @@ navLinks.forEach((link, index) => {
     });
 });
 
-// Initialize with default message
+
 courseInfo.textContent = 'Select a course to view information';
 
 
@@ -72,10 +76,8 @@ function loadData(subject) {
     document.getElementById('course-name').innerText = `Subject: ${subject}`;
 }
 
-// Simulated function to get data from the server
 function getServerData(subject) {
-    // In a real scenario, this would be an AJAX call or some server communication
-    // For now, we'll simulate it returning multiple entries for RANAC
+    
     if (subject === 'RANAC') {
         return [
             { type: 'Audio', data: 'URL_TO_AUDIO_FILE_1' },
@@ -83,20 +85,12 @@ function getServerData(subject) {
             { type: 'Text', data: 'Text File' },
         ];
     }
-    // Add more conditions for other subjects as needed
-
-    // Default return if no match
+    
     return [];
 }
 
-
-
-
-//new code
 function showOptions(roomNumber) {
-    // ... existing code ...
-
-    // Inject options bar HTML
+    
     var optionsHTML = `
         <button onclick="showAudioOptions('${roomNumber}')">AUDIO</button>
         <button onclick="showVideoOptions('${roomNumber}')">VIDEO</button>
@@ -104,16 +98,12 @@ function showOptions(roomNumber) {
         <button onclick="showHistory('${roomNumber}')">HISTORY</button>
     `;
     optionsBar.innerHTML = optionsHTML;
-
-    // ... existing code ...
+    
 }
+
 function showHistory(roomNumber) {
-    // You need to implement the logic to fetch and display the history for the given roomNumber
-    // For now, let's assume the server returns an array of history entries for the room
-
+    
     const serverHistoryData = getServerHistoryData(roomNumber);
-
-    // Display history data for the selected room
     const historyContainer = document.getElementById('history-container');
     historyContainer.innerHTML = '';
 
@@ -124,10 +114,9 @@ function showHistory(roomNumber) {
     }
 }
 
-// Simulated function to get history data from the server
+
 function getServerHistoryData(roomNumber) {
-    // In a real scenario, this would be an AJAX call or some server communication
-    // For now, we'll simulate it returning multiple entries for the room
+    
     if (roomNumber === '201') {
         return [
             { type: 'Audio', data: 'URL_TO_AUDIO_FILE_1' },
@@ -135,8 +124,6 @@ function getServerHistoryData(roomNumber) {
             { type: 'Text', data: 'Text File' },
         ];
     }
-    // Add more conditions for other rooms as needed
-
-    // Default return if no match
+    
     return [];
 }

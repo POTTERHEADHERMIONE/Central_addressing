@@ -1,10 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
 
-    const subs = JSON.parse(localStorage.getItem("subs")) ; // Parse the JSON and handle null/undefined
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const subs = JSON.parse(localStorage.getItem("subs")) ; 
 
     var subsList = document.getElementById("course-select");
-    // console.log(subs.length)
-    // console.log(subs)
+
     for (var a = 0; a < subs.length; a++) {
         var optionElement = document.createElement("option");
         optionElement.value = subs[a];
@@ -22,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const courseInfoText = document.getElementById("course-info-text");
     const courseLink = document.getElementById("course-link");
 
-    if (courseSelect) { // Check if "course-select" element exists
+    if (courseSelect) { 
+
         courseSelect.addEventListener("change", function () {
             const selectedCourse = courseSelect.value;
             // courseInfoText.textContent = `This is information about the ${selectedCourse} course.`;
@@ -39,7 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const informationText = document.getElementById("information-text");
     const sendInformationButton = document.getElementById("send-information");
 
-    if (sendInformationButton) { // Check if "send-information" element exists
+    if (sendInformationButton) 
+    { 
         sendInformationButton.addEventListener("click", function () {
             const selectedClassroom = classroomSelect.value;
             const selectedComponent = componentSelect.value;
@@ -48,12 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Show the Admin section by default
+    
     if (adminSection) {
         adminSection.style.display = "block";
     }
 
-    // Show/hide sections based on button clicks
+
+
+
     if (studentButton && adminButton) { // Check if both buttons exist
         studentButton.addEventListener("click", function () {
             studentSection.style.display = "block";

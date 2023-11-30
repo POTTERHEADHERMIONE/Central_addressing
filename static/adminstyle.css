@@ -6,6 +6,7 @@ body {
     background-attachment: fixed;
     padding-top: 100px;
     text-align: center;
+    margin: 0; /* Reset default margin */
 }
 
 .header {
@@ -54,7 +55,6 @@ h2 {
     margin-right: 20px;
 }
 
-
 @media only screen and (max-width: 600px) {
     .side-nav {
         width: 110px;
@@ -73,22 +73,19 @@ h2 {
     }
 }
 
- 
-
 .course-info {
-    width: 500px;
-    height: 500px;
-    background-color: rgba(0, 0, 0, 0.5);
+    width: calc(100% - 250px); /* Subtract side-nav width */
+    height: 100vh; /* 100% of the viewport height */
     position: fixed;
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); 
+    top: 0;
+    left: 250px; /* Match side-nav width */
     padding: 20px 30px;
     display: flex;
     flex-direction: column;
     align-items: center; 
     color: white;
-
+    background-color: transparent; /* Remove background color */
+}
 
 .active {
     background-color: rgba(240, 240, 240, 0.3);
@@ -106,7 +103,7 @@ h2 {
 
 .nav-links li:hover a {
     color: rgb(246, 246, 253);
-    background-color: #62e9e2 ; 
+    background-color: #62e9e2; 
     transition: 0.3s;
 }
 
@@ -114,25 +111,21 @@ h2 {
     display: block;
 }
 
-
 .nav-links li.selected a {
-    background-color: #62e9e2 ;
+    background-color: #62e9e2;
     color: rgb(255, 255, 255);
-}
 }
 
 .nav-links li a:hover {
-    background-color: #62e9e2 ; 
+    background-color: #62e9e2; 
     color: rgb(255, 255, 255);
     transition: 0.3s;
 }
 
-
 .nav-links li.selected a {
-    background-color:  #62e9e2 ;
+    background-color: #62e9e2;
     color: rgb(255, 255, 255);
 }
-
 
 .options-bar {
     display: none;
@@ -148,5 +141,4 @@ h2 {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-
 }
