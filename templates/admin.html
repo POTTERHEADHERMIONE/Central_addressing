@@ -170,78 +170,90 @@
 
         document.getElementById('options-bar').appendChild(audioRecordingScript);
     }
+   
+
 
     function showVideoOptions(roomNumber) {
-        // Inject video recording HTML and JavaScript
-        var videoRecordingHTML = `
-            <h2>Video Recording</h2>
-            <button id="startVideoRecording">Start Video Recording</button>
-            <button id="stopVideoRecording" disabled>Stop Video Recording</button>
-            <video controls id="videoPlayer"></video>
-            <button id="submitVideoData">Submit Video Data</button>
-            <div id="videoSuccessMessage" style="color: green;"></div>
-        `;
+    // Inject video recording HTML and JavaScript
+    var videoRecordingHTML = `
+        <h2>Video Recording</h2>
+        <button id="startVideoRecording">Start Video Recording</button>
+        <button id="stopVideoRecording" disabled>Stop Video Recording</button>
+        <video id="videoPlayer" controls></video>
+        <button id="submitVideoData">Submit Video Data</button>
+        <div id="videoSuccessMessage" style="color: green;"></div>
+    `;
 
-        document.getElementById('options-bar').innerHTML += videoRecordingHTML;
+    document.getElementById('options-bar').innerHTML += videoRecordingHTML;
 
-        // Inject video recording JavaScript
-        var videoRecordingScript = document.createElement('script');
-        videoRecordingScript.innerHTML = `
-            let videoMediaRecorder;
-            let videoChunks = [];
+    // Inject video recording JavaScript
+    var videoRecordingScript = document.createElement('script');
+    videoRecordingScript.innerHTML = `
+        let videoMediaRecorder;
+        let videoChunks = [];
+        let isRecording = false;
 
-            async function startVideoRecording() {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                    videoMediaRecorder = new MediaRecorder(stream);
+        async function startVideoRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+                videoMediaRecorder = new MediaRecorder(stream);
 
-                    videoMediaRecorder.ondataavailable = (event) => {
-                        if (event.data.size > 0) {
-                            videoChunks.push(event.data);
-                        }
-                    };
+                // Display the live camera feed
+                const videoPlayer = document.getElementById('videoPlayer');
+                videoPlayer.srcObject = stream;
 
-                    videoMediaRecorder.onstop = () => {
-                        const videoBlob = new Blob(videoChunks, { type: 'video/webm' });
-                        const videoUrl = URL.createObjectURL(videoBlob);
-                        document.getElementById('videoPlayer').src = videoUrl;
-                    };
+                videoMediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        videoChunks.push(event.data);
+                    }
+                };
 
-                    videoMediaRecorder.start();
-                    document.getElementById('startVideoRecording').disabled = true;
-                    document.getElementById('stopVideoRecording').disabled = false;
-                } catch (error) {
-                    console.error('Error accessing camera:', error);
-                }
+                videoMediaRecorder.onstop = () => {
+                    const videoBlob = new Blob(videoChunks, { type: 'video/webm' });
+                    const videoUrl = URL.createObjectURL(videoBlob);
+                    videoPlayer.src = videoUrl;
+
+                    // Stop the live camera feed
+                    videoPlayer.srcObject.getTracks().forEach(track => track.stop());
+                };
+
+                videoMediaRecorder.start();
+                isRecording = true;
+                document.getElementById('startVideoRecording').disabled = true;
+                document.getElementById('stopVideoRecording').disabled = false;
+            } catch (error) {
+                console.error('Error accessing front camera:', error);
+            }
+        }
+
+        function stopVideoRecording() {
+            if (videoMediaRecorder && videoMediaRecorder.state === 'recording') {
+                videoMediaRecorder.stop();
+                isRecording = false;
+                document.getElementById('startVideoRecording').disabled = false;
+                document.getElementById('stopVideoRecording').disabled = true;
+            }
+        }
+
+        function submitVideoData() {
+            const videoData = document.getElementById('videoData').value;
+            const serverUrl = 'http://127.0.0.1:5000/admin/send_video_data';
+
+            if (videoChunks.length === 0) {
+                console.error('No video recorded.');
+                return;
             }
 
-            function stopVideoRecording() {
-                if (videoMediaRecorder.state === 'recording') {
-                    videoMediaRecorder.stop();
-                    document.getElementById('startVideoRecording').disabled = false;
-                    document.getElementById('stopVideoRecording').disabled = true;
-                }
-            }
+            const videoBlob = new Blob(videoChunks, { type: 'video/webm' });
 
-            function submitVideoData() {
-                const videoData = document.getElementById('videoData').value;
-                const serverUrl = 'http://127.0.0.1:5000/admin/send_video_data';
+            // Send video data to the server using FormData
+            const formData = new FormData();
+            formData.append('videoData', videoBlob, 'video.webm');
 
-                if (videoChunks.length === 0) {
-                    console.error('No video recorded.');
-                    return;
-                }
-
-                const videoBlob = new Blob(videoChunks, { type: 'video/webm' });
-
-                // Send video data to the server using FormData
-                const formData = new FormData();
-                formData.append('videoData', videoBlob, 'video.webm');
-
-                fetch(serverUrl, {
-                    method: 'POST',
-                    body: formData,
-                })
+            fetch(serverUrl, {
+                method: 'POST',
+                body: formData,
+            })
                 .then(response => response.json())
                 .then(data => {
                     console.log('Video data submitted successfully', data);
@@ -253,15 +265,18 @@
                     console.error('Error submitting video data', error);
                     // Handle errors
                 });
-            }
+        }
 
-            document.getElementById('startVideoRecording').addEventListener('click', startVideoRecording);
-            document.getElementById('stopVideoRecording').addEventListener('click', stopVideoRecording);
-            document.getElementById('submitVideoData').addEventListener('click', submitVideoData);
-        `;
+        document.getElementById('startVideoRecording').addEventListener('click', startVideoRecording);
+        document.getElementById('stopVideoRecording').addEventListener('click', stopVideoRecording);
+        document.getElementById('submitVideoData').addEventListener('click', submitVideoData);
+    `;
 
-        document.getElementById('options-bar').appendChild(videoRecordingScript);
-    }
+    document.getElementById('options-bar').appendChild(videoRecordingScript);
+}
+
+
+
 
     function showTextInput(roomNumber) {
         // Inject text input HTML
