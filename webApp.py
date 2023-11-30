@@ -1,7 +1,19 @@
 from flask import Flask, render_template, request, jsonify
 from database import adminList, studentList
+from os.path import exists as folder_exists
+from os import makedirs
+# from 
 
 app = Flask(__name__)
+av_folder = "av_folder"
+
+@app.route("/video")
+def saveVideo():
+    pass
+
+@app.route("/audio")
+def saveAudio():
+    pass
 
 @app.route("/")
 def loginPage():
@@ -9,12 +21,10 @@ def loginPage():
 
 @app.route("/student")
 def studentPage():
-    print("we reached")
     return render_template("student.html")
 
 @app.route("/admin")
 def adminPage():
-    print("we reached")
     return render_template("admin.html")
 
 @app.route("/login", methods=["POST"])
@@ -47,4 +57,5 @@ def login():
 
 
 if __name__ == "__main__":
+    if (folder_exists(av_folder) == False) : makedirs(av_folder)
     app.run(debug=True)

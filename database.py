@@ -20,8 +20,8 @@ def addUser(mailID, password,name,isStudent=1):
         return 1
 
 
-if __name__ == '__main__':
-    adminList.delete_many({})
-    studentList.delete_many({})
+# if __name__ == '__main__':
+#     adminList.delete_many({})
+#     studentList.delete_many({})
 
     

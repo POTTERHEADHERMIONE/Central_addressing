@@ -37,8 +37,6 @@ classroomButtons.forEach((button) => {
 });
 
 
-
-
 // new code added
 let selectedRooms = [];
 
