@@ -18,12 +18,14 @@ document.getElementById("login-button").addEventListener("click", function () {
     event.preventDefault();
     var mailID = document.getElementById("mailID").value;
     var password = document.getElementById("password").value;
+    var statusLabel = document.getElementById("status");
+
     var data = {
         "mailID": mailID,
         "password": password,
         "isAdmin": isAdmin
     };
-    console.log(data);
+
     fetch("/login", {
         method: "POST",
         headers: {
@@ -34,12 +36,15 @@ document.getElementById("login-button").addEventListener("click", function () {
     .then(response => response.json())
     .then(data => {
         if (data.status !== "success") {
-            console.log("Here..");
+            statusLabel.innerText = 'Wrong password entered';
+            statusLabel.style.color = 'red';
         } else {
+            // Clear any previous error messages
+            statusLabel.innerText = '';
+            // Proceed with successful login logic
             var subs = data.subs;
-
             localStorage.setItem("subs", JSON.stringify(subs));
-            
+
             if (isAdmin === 0) {
                 // Navigate to index.html for student login
                 window.location.href = "/student";
