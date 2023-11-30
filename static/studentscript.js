@@ -88,3 +88,55 @@ function getServerData(subject) {
     // Default return if no match
     return [];
 }
+
+
+
+
+//new code
+function showOptions(roomNumber) {
+    // ... existing code ...
+
+    // Inject options bar HTML
+    var optionsHTML = `
+        <button onclick="showAudioOptions('${roomNumber}')">AUDIO</button>
+        <button onclick="showVideoOptions('${roomNumber}')">VIDEO</button>
+        <button onclick="showTextInput('${roomNumber}')">TEXT</button>
+        <button onclick="showHistory('${roomNumber}')">HISTORY</button>
+    `;
+    optionsBar.innerHTML = optionsHTML;
+
+    // ... existing code ...
+}
+function showHistory(roomNumber) {
+    // You need to implement the logic to fetch and display the history for the given roomNumber
+    // For now, let's assume the server returns an array of history entries for the room
+
+    const serverHistoryData = getServerHistoryData(roomNumber);
+
+    // Display history data for the selected room
+    const historyContainer = document.getElementById('history-container');
+    historyContainer.innerHTML = '';
+
+    for (const entry of serverHistoryData) {
+        const entryElement = document.createElement('div');
+        entryElement.innerHTML = `<p>${entry.type}: ${entry.data}</p>`;
+        historyContainer.appendChild(entryElement);
+    }
+}
+
+// Simulated function to get history data from the server
+function getServerHistoryData(roomNumber) {
+    // In a real scenario, this would be an AJAX call or some server communication
+    // For now, we'll simulate it returning multiple entries for the room
+    if (roomNumber === '201') {
+        return [
+            { type: 'Audio', data: 'URL_TO_AUDIO_FILE_1' },
+            { type: 'Video', data: 'https://www.youtube.com/embed/whvCIVRLUEs' },
+            { type: 'Text', data: 'Text File' },
+        ];
+    }
+    // Add more conditions for other rooms as needed
+
+    // Default return if no match
+    return [];
+}
