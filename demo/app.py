@@ -1,45 +1,22 @@
-from flask import Flask, jsonify, request, render_template
-from flask_cors import CORS  # Import CORS from flask_cors
+from flask import Flask, send_from_directory, make_response, send_file, render_template
+import os
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
 
-# Placeholder data storage
-server_data = {
-    "textData": "",
-    "audioData": "/file.mp3",  # Provide a default audio file path
-}
+# Set the path to your audio files directory
+audio_directory = os.path.join(os.getcwd(), 'av_folder')
+app.config['DOWNLOAD_FOLDER'] = '/static'
 
 @app.route('/')
-def home():
+def main():
     return render_template('admin.html')
 
-@app.route('/admin/send_data', methods=['POST'])
-def receive_data_from_admin():
-    # data = request.get_json()
-    data = request.form
-
-    # Update the server data with the received data
-    # server_data['textData'] = data.get('textData', "")
-    
-    # Handle audio file
-    audio_file = request.files.get('audioData')
-
-
-    if audio_file:
-        with open('audio_file_received.wav', 'wb') as f:
-            f.write(audio_file.read())
-    #     server_data['audioData'] = audio_file.read()
-
-    return jsonify({"message": "Data received successfully!"})
-
-@app.route('/student')
-def student():
-    return render_template('student.html')
-
-@app.route('/student/get_data', methods=['GET'])
-def send_data_to_student():
-    return jsonify(server_data)
+@app.route("/audio", methods=["POST"])
+def getFile():
+    # file_to_be_sent = open("static/1.wav", 'rb').read()
+    name = "1.wav"
+    return send_from_directory(app.config['DOWNLOAD_FOLDER'],name, as_attachment=True)
+    return send_file(file_to_be_sent, as_attachment=True, mimetype='audio/wav',download_name="audio_file")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

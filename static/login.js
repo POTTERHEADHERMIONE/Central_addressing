@@ -20,6 +20,12 @@ document.getElementById("login-button").addEventListener("click", function () {
     var password = document.getElementById("password").value;
     var statusLabel = document.getElementById("status");
 
+
+    //new
+    var statusMessage = document.createElement("p");
+    statusMessage.id = "status-message";
+    statusMessage.style.color = 'red'; 
+
     var data = {
         "mailID": mailID,
         "password": password,
@@ -37,19 +43,21 @@ document.getElementById("login-button").addEventListener("click", function () {
     .then(data => {
         if (data.status !== "success") {
             statusLabel.innerText = 'Wrong password entered';
+            statusLabel.appendChild(statusMessage);
             statusLabel.style.color = 'red';
         } else {
-            // Clear any previous error messages
+            
             statusLabel.innerText = '';
-            // Proceed with successful login logic
+            
             var subs = data.subs;
+            
             localStorage.setItem("subs", JSON.stringify(subs));
 
             if (isAdmin === 0) {
-                // Navigate to index.html for student login
+                
                 window.location.href = "/student";
             } else {
-                // Handle the admin login redirect logic here, if needed.
+                
                 window.location.href = "/admin";
             }
         }

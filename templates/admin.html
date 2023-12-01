@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='adminstyle.css') }}">
-    <script src="https://kit.fontawesome.com/c94fce1bd4.js" crossorigin="anonymous"></script>
-    <title>Classroom choose</title>
-</head>
-<body>
-    <div class="header">
-        <div class="side-nav">
-            <h1 style="color: #62e9e2;">Class - Room</h1>
-            <ul class="nav-links">
-                <li><a href="#" onclick="showOptions('201')">201</a></li>
-                <li><a href="#" onclick="showOptions('203')">203</a></li>
-                <li><a href="#" onclick="showOptions('205')">205</a></li>
-                <li><a href="#" onclick="showOptions('201')">207</a></li>
-                <li><a href="#" onclick="showOptions('203')">209</a></li>
-                <li><a href="#" onclick="showOptions('205')">215</a></li>
-                <li><a href="#" onclick="showOptions('201')">213</a></li>
-                <li><a href="#" onclick="showOptions('203')">211</a></li>
-               
-                
-            </ul>
-        </div>
-        <div class="course-info">
-            <h2></h2>
-            <p id="course-name">Select a room to view information</p>
-            <div id="options-bar" class="options-bar">
-            
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='adminstyle.css') }}">
+        <script src="{{ url_for('static', filename='adminscript.js') }}"></script>
+        <script src="{{ url_for('static', filename='audioRecord.js') }}"></script>
+
+        <!-- <script src="https://kit.fontawesome.com/c94fce1bd4.js" crossorigin="anonymous"></script> -->
+        <title>Classroom choose</title>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="side-nav">
+                <h1 style="color: #62e9e2;">Classroom</h1>
+                <ul id="rooms">
+                    <!-- <li>text</li> -->
+                    <!-- ids added here -->
+                </ul>
             </div>
+
+            <div class="course-info">
+                <p id="course-name" style = "text-align: center;">Select a room to view information</p>
+                <div id="options-bar" class="options-bar"></div>
+                <ul id="interfaces">
+
+                </ul>
+            </div>
+
         </div>
-    </div>
-   
- <script src="{{ url_for('static', filename='adminscript.js') }}"></script>
-</body>
+    
+    </body>
 </html>

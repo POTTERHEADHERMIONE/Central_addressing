@@ -2,29 +2,31 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginstyle.css') }}">
     
 </head>
 <body>
-    <h1 style="text-align: center;">KOOL LECTURES</h1>
+    
 
-    <h2 style="text-align: center;">Login</h2>
+    <h1 style="text-align: center;">LOGIN</h1>
    
     <div id="login-form" style="width: max-content; height: max-content; text-align: center; margin: 0 auto; margin-top: 10px;">
         <div>
             <button id="adminButton" class="admin-selected">Admin</button>
+            <span style="margin-right: 10px;"></span>
             <button id="studentButton">Student</button>
         </div>
         <br><br>
-        <label for="username" style="color: aqua; font-size: medium;">Mail ID:</label>
+        <label for="username" style="color: aqua; font-size: medium;">Mail ID:</label><br>
         <input type="text" id="mailID">
         <br><br>
-        <label for="password" style="color: aqua; font-size: medium;">Password:</label>
+        <label for="password" style="color: aqua; font-size: medium;">Password:</label><br>
         <input type="password" id="password">
         <br><br>
         <br><br>
         <label id="status"></label>
-        <button type="submit" id="login-button">Login</button>
+        <button type="submit" id="login-button">Login</button><br>
+        <p id="error-message" style="color: red;"></p>
     </div>
     <div id="wrapper" style="height: 100px; overflow: auto"></div>
 
